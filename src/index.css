@@ -39,7 +39,7 @@
   --accent-foreground: #1e1a14;
   --border: #d0c8b4;
   --ring: #b84c0a;
-  --radius: 4px;
+  --radius: 6px;
 }
 
 * {
@@ -66,7 +66,6 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
-  opacity: 0;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -80,22 +79,77 @@ h1, h2, h3, h4 {
   scrollbar-color: var(--border) transparent;
 }
 
-@keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.6); opacity: 0; }
+/* ── Animations ─────────────────────────────────────────────────────────────── */
+
+@keyframes ping {
+  0%   { transform: scale(1); opacity: 0.8; }
+  75%, 100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
 }
 
 @keyframes wave {
-  0%, 100% { transform: scaleY(0.4); }
-  50% { transform: scaleY(1); }
+  0%, 100% { transform: scaleY(0.35); }
+  50%       { transform: scaleY(1); }
 }
 
-.recording-active .wave-bar {
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ── Utility classes ─────────────────────────────────────────────────────────── */
+
+.animate-ping {
+  animation: ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.result-card {
+  animation: slideUp 0.4s ease;
+}
+
+/* Waveform bars when active */
+.wave-bar-active {
   animation: wave 0.6s ease-in-out infinite;
 }
-
-.wave-bar:nth-child(1) { animation-delay: 0s; }
-.wave-bar:nth-child(2) { animation-delay: 0.1s; }
-.wave-bar:nth-child(3) { animation-delay: 0.2s; }
-.wave-bar:nth-child(4) { animation-delay: 0.3s; }
-.wave-bar:nth-child(5) { animation-delay: 0.4s; }
+.wave-bar-active:nth-child(1)  { animation-delay: 0s; }
+.wave-bar-active:nth-child(2)  { animation-delay: 0.07s; }
+.wave-bar-active:nth-child(3)  { animation-delay: 0.14s; }
+.wave-bar-active:nth-child(4)  { animation-delay: 0.21s; }
+.wave-bar-active:nth-child(5)  { animation-delay: 0.28s; }
+.wave-bar-active:nth-child(6)  { animation-delay: 0.35s; }
+.wave-bar-active:nth-child(7)  { animation-delay: 0.42s; }
+.wave-bar-active:nth-child(8)  { animation-delay: 0.35s; }
+.wave-bar-active:nth-child(9)  { animation-delay: 0.28s; }
+.wave-bar-active:nth-child(10) { animation-delay: 0.21s; }
+.wave-bar-active:nth-child(11) { animation-delay: 0.14s; }
+.wave-bar-active:nth-child(12) { animation-delay: 0.07s; }
+.wave-bar-active:nth-child(13) { animation-delay: 0s; }
+.wave-bar-active:nth-child(14) { animation-delay: 0.07s; }
+.wave-bar-active:nth-child(15) { animation-delay: 0.14s; }
